@@ -7,32 +7,35 @@
 * http://www.opensource.org/licenses/mit-license.php
 */
 (function ($) {
-	$.fn.confirmExit = function(message) {
-		var confirmExit = false;
+    $.fn.confirmExit = function() {
+        $(this).attr('data-original', $(this).serialize());
 
-		$('input, textarea, select', this).on('change keyup', function() {
-			// Do not set the event handler if not needed
-			if (!confirmExit) {
-				confirmExit = true;
+		$(this).on('submit', function() {
+            $(this).removeAttr('data-original');
+        });
 
-				window.onbeforeunload = function(event) {
-					var e = event || window.event;
+        return $(this);
+    }
 
-					// For old IE and Firefox
-					if (e) {
-						e.returnValue = message;
-					}
+    $(window).on('beforeunload', function(event) {
+        var e = event || window.event,
+            message = window.SONATA_TRANSLATIONS.CONFIRM_EXIT,
+            changes = false
+        ;
 
-					return message;
-				}
-			}
-		});
+        $('form[data-original]').each(function() {
+            if ($(this).attr('data-original') !== $(this).serialize()) {
+                changes = true;
+            }
+        });
 
-		this.submit(function() {
-			window.onbeforeunload = null;
-			confirmExit = false;
-		});
+        if (changes) {
+            // For old IE and Firefox
+            if (e) {
+                e.returnValue = message;
+            }
 
-		return this;
-	}
-	})(jQuery);
+            return message;
+        }
+    });
+})(jQuery);
