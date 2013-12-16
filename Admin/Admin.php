@@ -844,7 +844,13 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
 
             $object = $this->getSubject();
 
-            $propertyAccessor->setValue($object, $propertyPath, $parent);
+            $value = $propertyAccessor->getValue($object, $propertyPath);
+
+            if (is_array($value) || $value instanceof \Traversable) {
+                $propertyAccessor->setValue($object, $propertyPath, [$parent]);
+            } else {
+                $propertyAccessor->setValue($object, $propertyPath, $parent);
+            }
         }
 
         $this->form = $this->getFormBuilder()->getForm();
