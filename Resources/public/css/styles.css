@@ -337,6 +337,13 @@ td.sonata-ba-list-field .editable-empty:not(.editable-open) {
     border-radius: 0 !important;
 }
 
+.select2-offscreen,
+.select2-offscreen:focus {
+    /* Keep original element in the same spot so that HTML5 valiation message appear in the correct position */
+    left: auto !important;
+    top: auto !important;
+}
+
 /* Used for the mosaic view */
 td > div.row {
     padding: 0;
