@@ -14,6 +14,8 @@ namespace Sonata\AdminBundle\Tests\Admin;
 use Sonata\AdminBundle\Admin\BaseFieldDescription;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Tests\Fixtures\Admin\FieldDescription;
+use Sonata\AdminBundle\Tests\Fixtures\Entity\Foo;
+use Sonata\AdminBundle\Tests\Fixtures\Entity\FooCall;
 
 class BaseFieldDescriptionTest extends \PHPUnit_Framework_TestCase
 {
@@ -189,5 +191,40 @@ class BaseFieldDescriptionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('FooBar', BaseFieldDescription::camelize('foo_bar'));
         $this->assertEquals('FooBar', BaseFieldDescription::camelize('foo bar'));
         $this->assertEquals('FOoBar', BaseFieldDescription::camelize('fOo bar'));
+    }
+
+    public function testGetFieldValue()
+    {
+        $foo = new Foo();
+        $foo->setBar('Bar');
+
+        $description = new FieldDescription();
+        $this->assertEquals('Bar', $description->getFieldValue($foo, 'bar'));
+
+        $this->setExpectedException('Sonata\AdminBundle\Exception\NoValueException');
+        $description->getFieldValue($foo, 'iDoNotExist');
+    }
+
+    public function testGetFieldValueWithCodeOption()
+    {
+        $foo = new Foo();
+        $foo->setBaz('Baz');
+
+        $description = new FieldDescription();
+
+        $description->setOption('code', 'getBaz');
+        $this->assertEquals('Baz', $description->getFieldValue($foo, 'iDoNotExist'));
+
+        $description->setOption('code', 'iDoNotExist');
+        $this->setExpectedException('Sonata\AdminBundle\Exception\NoValueException');
+        $description->getFieldValue($foo, 'iDoNotExist');
+    }
+
+    public function testGetFieldValueMagicCall()
+    {
+        $foo = new FooCall();
+
+        $description = new FieldDescription();
+        $this->assertEquals('getIDoNotExist', $description->getFieldValue($foo, 'iDoNotExist'));
     }
 }
