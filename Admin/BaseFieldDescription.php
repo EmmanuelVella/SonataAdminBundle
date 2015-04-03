@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Container;
 /**
  * A FieldDescription hold the information about a field. A typical
  * admin instance contains different collections of fields
- *
+ *__
  * - form: used by the form
  * - list: used by the list
  * - filter: used by the list filter
@@ -343,12 +343,12 @@ abstract class BaseFieldDescription implements FieldDescriptionInterface
             }
         }
 
-        if (method_exists($object, '__call')) {
-            return call_user_func_array(array($object, '__call'), array($fieldName, $parameters));
-        }
-
         if (isset($object->{$fieldName})) {
             return $object->{$fieldName};
+        }
+
+        if (method_exists($object, '__call')) {
+            return call_user_func_array(array($object, '__call'), array($fieldName, $parameters));
         }
 
         throw new NoValueException(sprintf('Unable to retrieve the value of `%s`', $this->getName()));
