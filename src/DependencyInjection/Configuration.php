@@ -118,6 +118,7 @@ class Configuration implements ConfigurationInterface
                         ->booleanNode('use_icheck')->defaultTrue()->end()
                         ->booleanNode('use_bootlint')->defaultFalse()->end()
                         ->booleanNode('use_stickyforms')->defaultTrue()->end()
+                        ->booleanNode('persist_form')->defaultTrue()->end()
                         ->integerNode('pager_links')->defaultNull()->end()
                         ->scalarNode('form_type')->defaultValue('standard')->end()
                         ->integerNode('dropdown_number_groups_per_colums')->defaultValue(2)->end()
@@ -399,6 +400,7 @@ class Configuration implements ConfigurationInterface
                                 'bundles/sonataadmin/vendor/waypoints/lib/jquery.waypoints.min.js',
                                 'bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js',
                                 'bundles/sonataadmin/vendor/readmore-js/readmore.min.js',
+                                'bundles/sonataadmin/vendor/sisyphus/sisyphus.js',
 
                                 'bundles/sonataadmin/vendor/masonry/dist/masonry.pkgd.min.js',
 

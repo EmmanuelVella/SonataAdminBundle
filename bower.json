@@ -14,7 +14,8 @@
         "jquery.scrollTo": "^1.4",
         "jquery-form": "3.51",
         "waypoints": "^4.0",
-        "readmore-js": "^2.2"
+        "readmore-js": "^2.2",
+        "sisyphus": "1878a0f51ffc3062ff3d1740b22a8c8c7f616262"
     },
     "license": "MIT",
     "private": true,

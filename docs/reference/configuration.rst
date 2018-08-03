@@ -80,6 +80,7 @@ Full Configuration Options
                 use_icheck: true
                 use_bootlint: false
                 use_stickyforms: true
+                persist_form: true
                 pager_links: null
                 form_type: standard
                 dropdown_number_groups_per_colums:  2
@@ -217,6 +218,7 @@ Full Configuration Options
                     - 'bundles/sonataadmin/vendor/waypoints/lib/jquery.waypoints.min.js'
                     - 'bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js'
                     - 'bundles/sonataadmin/vendor/readmore-js/readmore.min.js'
+                    - 'bundles/sonataadmin/vendor/sisyphus/sisyphus.min.js'
                     - 'bundles/sonataadmin/vendor/masonry/dist/masonry.pkgd.min.js'
                     - 'bundles/sonataadmin/Admin.js'
                     - 'bundles/sonataadmin/treeview.js'

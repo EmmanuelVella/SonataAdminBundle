@@ -18,6 +18,7 @@
               {% if form.vars.multipart %} enctype="multipart/form-data"{% endif %}
               method="POST"
               {% if not sonata_admin.adminPool.getOption('html5_validate') %}novalidate="novalidate"{% endif %}
+              {% if sonata_admin.adminPool.getOption('persist_form') %}data-persist="Would you like to restore saved form data ?"{% endif %}
               {% block sonata_form_attributes %}{% endblock %}
               >
 

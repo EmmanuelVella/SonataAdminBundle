@@ -29,6 +29,7 @@ SonataAdmin Options that may affect the create or edit view:
             use_icheck:        true     # enable or disable usage of the iCheck library
             use_bootlint:      false    # enable or disable usage of Bootlint
             use_stickyforms:   true     # enable or disable the floating buttons
+            persist_form:      true     # enable or disable usage of the Sisyphus library
             form_type:         standard # can also be 'horizontal'
 
         templates:
@@ -41,6 +42,7 @@ For more information about optional libraries:
 - Select2: https://github.com/select2/select2
 - iCheck: http://icheck.fronteed.com/
 - Bootlint: https://github.com/twbs/bootlint#in-the-browser
+- Sisyphus: http://sisyphus-js.herokuapp.com
 
 
 .. note::

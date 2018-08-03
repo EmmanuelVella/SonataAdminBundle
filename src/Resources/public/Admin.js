@@ -23,6 +23,7 @@ var Admin = {
         Admin.log("[core|shared_setup] Register services on", subject);
         Admin.set_object_field_value(subject);
         Admin.add_filters(subject);
+        Admin.setup_sisyphus(subject);
         Admin.setup_select2(subject);
         Admin.setup_icheck(subject);
         Admin.setup_checkbox_range_selection(subject);
@@ -104,6 +105,22 @@ var Admin = {
             jQuery("input[type='checkbox']:not('label.btn>input'), input[type='radio']:not('label.btn>input')", subject).iCheck({
                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue'
+            });
+        }
+    },
+    setup_sisyphus: function(subject) {
+        if (window.SONATA_CONFIG && window.SONATA_CONFIG.PERSIST_FORM) {
+            $('form[data-persist]', subject).each(function () {
+                var $form = jQuery(this);
+
+                $form.sisyphus({
+                    'locationBased': true,
+                    'excludeFields': jQuery('input[type="hidden"]', subject),
+                    'onBeforeRestore': function (e) {
+                        console.log(this.browserStorage);
+                        return confirm($form.data('persist'));
+                    }
+                })
             });
         }
     },
